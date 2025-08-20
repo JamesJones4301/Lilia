@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+   :root {
+    /* Primary & Secondary */
+    --primary: #FF5EDF;        /* Vivid magenta-pink */
+    --secondary: #00F7FF;      /* Electric cyan */
+    --accent: #FFB86C;         /* Warm neon gold/orange */
+
+    /* Backgrounds */
+    --background: #0C0C1E;    /* Deep space navy */
+    --card-bg: rgba(20, 20, 40, 0.85); /* Transparent dark card */
+    --gradient-bg: linear-gradient(135deg, #FF5EDF 0%, #784BEA 50%, #00F7FF 100%);
+
+    /* Text */
+    --text-color: #E0E0E0;     /* Bright light text */
+    --text-light: #A0A0A0;     /* Muted text */
+    --placeholder: #555555;    /* Input placeholder text */
+
+    /* Status / Action Colors */
+    --danger: #FF3B5C;          /* Intense red/pink */
+    --success: #00FFA3;         /* Neon green */
+    --warning: #FFD700;         /* Vibrant gold */
+
+    /* Shadows & Glow */
+    --shadow-sm: 0 4px 20px rgba(255, 94, 223, 0.25);
+    --shadow-md: 0 10px 30px rgba(120, 75, 234, 0.3);
+    --shadow-lg: 0 15px 50px rgba(0, 247, 255, 0.35);
+    --glow: 0 0 10px #FF5EDF, 0 0 20px #784BEA, 0 0 30px #00F7FF;
+
+    /* Borders & Radius */
+    --border: 1px solid rgba(255, 255, 255, 0.1);
+    --radius: 16px;
+    --radius-sm: 8px;
+
+    /* Buttons & Hover Effects */
+    --btn-bg: linear-gradient(45deg, #FF5EDF, #784BEA);
+    --btn-hover-bg: linear-gradient(45deg, #00F7FF, #FFB86C);
+    --btn-hover-shadow: 0 8px 25px rgba(0, 247, 255, 0.5);
+
+    /* Transition */
+    --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     background: linear-gradient(135deg, #FF5EDF 0%, #784BEA 40%, #00F7FF 70%, #FFB86C 100%);
+
+    }
+
+    .login-container {
+      background: var(--card-bg);
+      padding: 50px 40px;
+      border-radius: 20px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 20px 40px var(--shadow-color);
+      animation: fadeIn 1s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, var(--primary), var(--secondary), var(--primary), var(--secondary));
+      animation: rotate 6s linear infinite;
+      z-index: 0;
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-container h2 {
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-size: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 14px 15px;
+      margin: 12px 0;
+      border: 1px solid #444;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      background: #1f2a44;
+      color: var(--text-color);
+      transition: 0.3s all;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+      background: #162447;
+    }
+
+    .login-container input::placeholder {
+      color: #6e6868;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px var(--shadow-color);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+
+    .error {
+      color: var(--accent);
+      font-size: 14px;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="error-msg" class="error"></p>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("error-msg");
+
+      if (username === "JamesJones4301" && password === "4301James#") {
+        window.location.href = "admin.html";
+      } else {
+        errorMsg.textContent = "Invalid credentials. Please try again!";
+      }
+    }
+  </script>
+</body>
+</html>
