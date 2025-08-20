@@ -625,16 +625,11 @@
             <h3>CashApp</h3>
             <p>Quick and easy</p>
           </div>
-          <div class="payment-method" onclick="selectPaymentMethod('PayPal')">
-            <i class="fab fa-paypal" style="color: #003087"></i>
-            <h3>PayPal</h3>
-            <p>Secure payment</p>
-          </div>
-          <div class="payment-method" onclick="selectPaymentMethod('Zelle')">
-            <i class="fas fa-university" style="color: #6d1ed4"></i>
-            <h3>Zelle</h3>
-            <p>Bank transfer</p>
-          </div>
+          <div class="payment-method" onclick="selectPaymentMethod('GoFundMe')">
+          <i class="fas fa-hand-holding-usd" style="color: #ff6b6b; font-size: 28px;"></i>
+          <h3>GoFundMe</h3>
+          <p>Donate online</p>
+        </div>
         </div>
 
         <!-- Payment Instructions -->
@@ -783,27 +778,16 @@
               "Send the payment",
             ],
           },
-          PayPal: {
-            handle: "paypal.com/donate/",
-            steps: [
-              "Go to <strong>paypal.com/donate/</strong>",
-              "Select donation type: <strong>One-Time, Weekly, or Monthly</strong>",
-              "Enter the amount you want to donate",
-              "Optionally, add extra to cover fees",
-              "Complete the payment to support the mission trip",
-            ],
-          },
-          Zelle: {
-            handle: "512-585-0543",
-            steps: [
-              "Open your banking app",
-              "Select Zelle transfer",
-              "Send to: <strong>512-585-0543</strong>",
-              "Enter amount: <strong>$" + donationAmount + "</strong>",
-              "Add memo: <strong>Tanzania Mission Trip</strong>",
-              "Complete transfer",
-            ],
-          },
+               GoFundMe: {
+    handle: "https://gofund.me/6a5d7faa",
+    steps: [
+        'Click the <a href="https://gofund.me/6a5d7faa" target="_blank" style="color: var(--accent); font-weight:bold;">GoFundMe link</a>',
+        "Enter the amount you want to donate",
+        "Follow the prompts to complete your donation",
+        "You’re supporting Dream Now Tanzania",
+        "Your donation will benefit Lilia Jones"
+    ],
+},
         };
 
         const payment = paymentMethods[method];
@@ -949,3 +933,4 @@
     </script>
   </body>
 </html>
+
